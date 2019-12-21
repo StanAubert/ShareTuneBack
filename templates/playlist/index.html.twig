@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Playlist index
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des Playlists</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Decription</th>
+				<th>utilisateurs</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for playlist in playlists %}
+				<tr>
+					<td>{{ playlist.id }}</td>
+					<td>{{ playlist.title }}</td>
+					<td>{{ playlist.decription }}</td>
+					<td>
+						{{playlist.user.name}}
+					</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('playlist_show', {'id': playlist.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+						<a class="btn btn-info" href="{{ path('playlist_edit', {'id': playlist.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<h1>Utilisateurs</h1>
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>user</th>
+				<th>Playlists</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.email }}</td>
+					<td><img class="rounded-circle pp mr-3" src="{{ user.profilePicture }}" alt="{{user.name}}">{{ user.name }}</td>
+					<td>
+						{% for playlist in user.playlists %}
+
+							<p>
+								<i class="fas fa-compact-disc fa-spin mr-3 fa-lg"></i>
+								{{playlist.title}}</p>
+						{% else %}
+							<i class="fa fas-cross badge-danger badge"></i>
+							L'utilisateur n'a pas de playlist
+							<i class="fa fas-cross badge-danger badge"></i>
+
+						{% endfor %}
+
+					</td>
+					<td>
+						<a class="btn btn-success" href="{{ path('user_show', {'id': user.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+						<a class="btn btn-info" href="{{ path('user_edit', {'id': user.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">Aucun utilisateurs trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

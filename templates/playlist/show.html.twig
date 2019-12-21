@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Playlist
+{% endblock %}
+
+{% block body %}
+	<h1>Playlist
+		<a class="ml-2" href="{{ path('playlist_edit', {'id': playlist.id}) }}">
+			<i class="fas fa-edit"></i>
+		</a>
+	</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ playlist.id }}</td>
+			</tr>
+			<tr>
+				<th>Title</th>
+				<td>{{ playlist.title }}</td>
+			</tr>
+			<tr>
+				<th>Decription</th>
+				<td>{{ playlist.decription }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="row">
+		<div class="col-6">{{ include('playlist/_delete_form.html.twig') }}</div>
+		<div class="col-6">
+			<a class="btn btn-secondary float-right" href="{{ path('playlist_index') }}">Retour</a>
+		</div>
+	</div>
+
+
+{% endblock %}

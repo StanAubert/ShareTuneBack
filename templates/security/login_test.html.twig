@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Connexion
+{% endblock %}
+
+{% block body %}
+	<form method="POST">
+		<input type="email" placeholder="Email" name="_username">
+		<input type="password" placeholder="Password" name="_password">
+		<button type="submit">Connexion</button>
+	</form>
+{% endblock %}
